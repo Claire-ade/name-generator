@@ -15,7 +15,8 @@ import py3Dmol
 
 st.title("Visualisation 3D de molécules")
 
-smiles = st.text_input("Entrez une structure SMILES :", "CCO")  # Éthanol
+# Utilise un identifiant unique avec le paramètre 'key'
+smiles = st.text_input("Entrez une structure SMILES :", "CCO", key="smiles_input")
 
 if smiles:
     try:
