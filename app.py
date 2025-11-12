@@ -14,21 +14,21 @@ import streamlit as st
 
 st.title("Visualisation 3D de molécules")
 
-smiles = st.text_input("Entrez une structure SMILES :", "CCO", key="smiles_input_3D")
+smiles = st.text_input("Entrez une structure SMILES :", "CCO", key="smiles_input_3d")
 
 if smiles:
-    html_code = f"""
-    <div id="viewer" style="width: 500px; height: 400px;"></div>
-    <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
-    <script>
-      let element = document.getElementById("viewer");
-      let config = {{ backgroundColor: "white" }};
-      let viewer = $3Dmol.createViewer(element, config);
-      $3Dmol.download("sdf:{smiles}", viewer, {{}}, function() {{
-        viewer.setStyle({{}}, {{stick:{{}}}});
-        viewer.zoomTo();
-        viewer.render();
-      }});
-    </script>
-    """
-    st.components.v1.html(html_code, height=400, width=500)
+    st.markdown("### Structure 3D")
+    st.components.v1.html(f"""
+        <div id="viewer" style="width: 500px; height: 400px;"></div>
+        <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+        <script>
+          let element = document.getElementById("viewer");
+          let config = {{ backgroundColor: "white" }};
+          let viewer = $3Dmol.createViewer(element, config);
+          $3Dmol.download("sdf:{smiles}", viewer, {{}}, function() {{
+            viewer.setStyle({{}}, {{stick:{{}}}});
+            viewer.zoomTo();
+            viewer.render();
+          }});
+        </script>
+    """, height=400, width=500)
