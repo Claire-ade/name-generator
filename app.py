@@ -11,20 +11,24 @@ if smiles:
     st.image(url, caption=f"Structure de {smiles}")
 
 import streamlit as st
-import py3Dmol
 
 st.title("Visualisation 3D de molécules")
 
-# Utilise un identifiant unique avec le paramètre 'key'
-smiles = st.text_input("Entrez une structure SMILES :", "CCO", key="smiles_input")
+smiles = st.text_input("Entrez une structure SMILES :", "CCO")  # Éthanol
 
 if smiles:
-    try:
-        view = py3Dmol.view(width=500, height=400)
-        view.addModel(smiles, "sdf")
-        view.setStyle({"stick": {}})
-        view.zoomTo()
-        html = view._make_html()
-        st.components.v1.html(html, height=400, width=500)
-    except Exception as e:
-        st.error(f"Erreur lors de l'affichage : {e}")
+    html_code = f"""
+    <div id="viewer" style="width: 500px; height: 400px;"></div>
+    <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+    <script>
+      let element = document.getElementById("viewer");
+      let config = {{ backgroundColor: "white" }};
+      let viewer = $3Dmol.createViewer(element, config);
+      $3Dmol.download("sdf:{smiles}", viewer, {}, function() {{
+        viewer.setStyle({{}}, {{stick:{{}}}});
+        viewer.zoomTo();
+        viewer.render();
+      }});
+    </script>
+    """
+    st.components.v1.html(html_code, height=400, width=500)
