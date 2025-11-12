@@ -14,7 +14,7 @@ import streamlit as st
 
 st.title("Visualisation 3D de molécules")
 
-smiles = st.text_input("Entrez une structure SMILES :", "CCO")  # Éthanol
+smiles = st.text_input("Entrez une structure SMILES :", "CCO")
 
 if smiles:
     html_code = f"""
@@ -24,7 +24,7 @@ if smiles:
       let element = document.getElementById("viewer");
       let config = {{ backgroundColor: "white" }};
       let viewer = $3Dmol.createViewer(element, config);
-      $3Dmol.download("sdf:{smiles}", viewer, {}, function() {{
+      $3Dmol.download("sdf:{smiles}", viewer, {{}}, function() {{
         viewer.setStyle({{}}, {{stick:{{}}}});
         viewer.zoomTo();
         viewer.render();
