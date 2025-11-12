@@ -3,7 +3,7 @@ import requests
 
 st.title("Structure moléculaire à partir de SMILES")
 
-smiles = st.text_input("Entrez une structure SMILES :", "CCO")  # Éthanol
+smiles = st.text_input("Entrez une structure SMILES :", "CCO" key="smiles_input_2D")  # Éthanol
 
 if smiles:
     # Utilise l'API de NCI pour générer une image PNG
@@ -14,7 +14,7 @@ import streamlit as st
 
 st.title("Visualisation 3D de molécules")
 
-smiles = st.text_input("Entrez une structure SMILES :", "CCO")
+smiles = st.text_input("Entrez une structure SMILES :", "CCO", key="smiles_input_3D")
 
 if smiles:
     html_code = f"""
