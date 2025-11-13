@@ -7,6 +7,9 @@ RUN conda env create -f environment.yml
 # Activate environment
 SHELL ["conda", "run", "-n", "rdkit-env", "/bin/bash", "-c"]
 
+# Copy your app file
+COPY app.py .
+
 # Expose Streamlit port
 EXPOSE 8501
 
