@@ -1,6 +1,0 @@
-streamlit
-requests
-
-streamlit
-rdkit-pypi
-Pillow
